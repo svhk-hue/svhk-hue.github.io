@@ -35,9 +35,10 @@ markdown: kramdown
 sticky: sticky # Tag used for sticky post
 sticky_count: 3 # Number of sticky post shown
 
-gems:
+plugins:
   - jekyll-paginate
   - jekyll-feed
+  - jemoji
   
 exclude:
   - Gemfile
