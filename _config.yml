@@ -1,5 +1,3 @@
-remote_theme: joshuaavalon/Jekyll-Panda 
-
 title: Your awesome title
 email: your-email@domain.com
 description: description
@@ -7,6 +5,8 @@ baseurl: ""
 url: https://svhk-hue.github.io
 twitter_username: joshuaavalon
 github_username:  joshuaavalon
+
+remote_theme: joshuaavalon/Jekyll-Panda 
 
 sass:
   style: compressed
