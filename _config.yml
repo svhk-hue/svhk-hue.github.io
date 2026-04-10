@@ -6,7 +6,7 @@ url: https://svhk-hue.github.io
 twitter_username: joshuaavalon
 github_username:  joshuaavalon
 
-remote_theme: pages-themes/cayman
+remote_theme: jekyll/minima
 
 sass:
   style: compressed
