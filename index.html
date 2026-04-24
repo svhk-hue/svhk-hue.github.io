@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Yeonansong</title>
+  <style>
+    body { margin:0; font-family: Arial, sans-serif; }
+    header { background:#2c3e50; color:white; padding:15px; }
+
+    nav ul { list-style:none; margin:0; padding:0; display:flex; }
+    nav ul li { position:relative; }
+    nav ul li a { display:block; padding:10px 15px; color:white; text-decoration:none; }
+    nav ul li:hover { background:#34495e; }
+
+    /* 드롭다운 */
+    nav ul li ul {
+      display:none;
+      position:absolute;
+      top:100%;
+      left:0;
+      background:#34495e;
+      min-width:180px;
+      flex-direction:column;
+    }
+
+    nav ul li:hover ul {
+      display:block;
+    }
+
+    nav ul li ul li a {
+      padding:10px;
+    }
+
+    .hero { background:#ecf0f1; padding:80px; text-align:center; }
+    .section { padding:40px; }
+    footer { background:#2c3e50; color:white; text-align:center; padding:20px; }
+    .btn { background:#3498db; color:white; padding:10px 20px; border:none; cursor:pointer; }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>연안송씨 종친회</h1>
+  <nav>
+    <ul>
+      <li><a href="#">홈</a></li>
+
+      <li>
+        <a href="#about">종친회소개</a>
+        <ul>
+          <li><a href="#about">인사말</a></li>
+          <li><a href="#history">연혁</a></li>
+          <li><a href="#organization">조직도</a></li>
+        </ul>
+      </li>
+
+      <li>
+        <a href="#news">종친회 소식</a>
+        <ul>
+          <li><a href="#news">공지사항</a></li>
+          <li><a href="#events">행사안내</a></li>
+        </ul>
+      </li>
+
+      <li>
+        <a href="#archive">자료실</a>
+        <ul>
+          <li><a href="#genealogy">족보</a></li>
+          <li><a href="#photos">사진자료</a></li>
+        </ul>
+      </li>
+
+      <li>
+        <a href="#board">게시판</a>
+        <ul>
+          <li><a href="#board">자유게시판</a></li>
+          <li><a href="#qna">문의하기</a></li>
+        </ul>
+      </li>
+
+      <li><a href="#contact">찾아오시는길</a></li>
+    </ul>
+  </nav>
+</header>
+
+<section class="hero">
+  <h2>연안송씨 홈페이지에 오신 것을 환영합니다</h2>
+  <p>종친회 소식과 정보를 공유하는 공간입니다.</p>
+  <button class="btn">더 알아보기</button>
+</section>
+
+<section id="about" class="section">
+  <h2>인사말</h2>
+  <p>종친회 소개 내용을 입력하세요.</p>
+</section>
+
+<section id="history" class="section">
+  <h2>연혁</h2>
+  <p>연혁 내용을 입력하세요.</p>
+</section>
+
+<section id="organization" class="section">
+  <h2>조직도</h2>
+  <p>조직도 내용을 입력하세요.</p>
+</section>
+
+<section id="news" class="section">
+  <h2>공지사항</h2>
+  <ul>
+    <li>공지사항 1</li>
+    <li>공지사항 2</li>
+  </ul>
+</section>
+
+<section id="events" class="section">
+  <h2>행사안내</h2>
+  <p>행사 정보를 입력하세요.</p>
+</section>
+
+<section id="archive" class="section">
+  <h2>자료실</h2>
+</section>
+
+<section id="genealogy" class="section">
+  <h2>족보</h2>
+  <p>족보 자료</p>
+</section>
+
+<section id="photos" class="section">
+  <h2>사진자료</h2>
+  <p>사진 자료</p>
+</section>
+
+<section id="board" class="section">
+  <h2>자유게시판</h2>
+  <p>게시판은 외부 서비스 연동 필요</p>
+</section>
+
+<section id="qna" class="section">
+  <h2>문의하기</h2>
+  <p>문의 내용을 입력하세요.</p>
+</section>
+
+<section id="contact" class="section">
+  <h2>찾아오시는길</h2>
+  <p>주소 및 지도</p>
+</section>
+
+<footer>
+  <p>© 2026 Yeonansong. All rights reserved.</p>
+</footer>
+
+</body>
+</html>
