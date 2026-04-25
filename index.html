@@ -5,28 +5,48 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>연안송씨 대종회</title>
 
-  <!-- 한문/전통 느낌 폰트 -->
+  <!-- 전통 느낌 폰트 -->
   <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;600&display=swap" rel="stylesheet">
 
   <style>
     body { margin:0; font-family: 'Noto Serif KR', serif; background:#f4f1ea; }
 
-    header { background:#f4f1ea; padding:10px 20px; border-bottom:2px solid #8b5a2b; }
-    .logo { font-size:22px; font-weight:600; color:#3b2f2f; }
+    header {
+      background:#f4f1ea;
+      padding:15px 20px;
+      border-bottom:2px solid #8b5a2b;
+      display:flex;
+      align-items:center;
+      gap:15px;
+    }
+
+    /* 로고 이미지 */
+    .logo-img {
+      height:50px;
+    }
+
+    .logo-text {
+      font-size:24px;
+      font-weight:600;
+      color:#3b2f2f;
+    }
 
     /* 네비게이션 */
-    nav { background:#2f5d50; }
+    nav {
+      background:#2f5d50;
+      border-bottom:3px solid #d4af37; /* 금색 라인 */
+    }
+
     nav ul { list-style:none; margin:0; padding:0; display:flex; }
     nav li { flex:1; position:relative; }
 
     nav a {
       display:block;
       padding:15px;
-      color:#d4af37; /* 금색 포인트 */
+      color:#d4af37;
       text-align:center;
       text-decoration:none;
       font-weight:600;
-      letter-spacing:1px;
     }
 
     nav a:hover { background:#23463c; color:#f5d76e; }
@@ -54,46 +74,54 @@
 
     .dropdown a:hover { background:#e8e1d5; }
 
-    nav li:hover .dropdown {
-      display:block;
-    }
+    nav li:hover .dropdown { display:block; }
 
     .hero {
-      height:400px;
+      height:420px;
       background:url('main.jpg') center/cover no-repeat;
     }
 
     .section {
       padding:40px 20px;
       display:grid;
-      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-      gap:20px;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap:25px;
     }
 
-    /* 단청 느낌 카드 */
+    /* 카드 */
     .card {
       border:3px solid #8b5a2b;
       padding:20px;
       text-align:center;
-      cursor:pointer;
-      transition:0.2s;
       background:#fffdf8;
       position:relative;
     }
 
-    /* 단청 장식 테두리 효과 */
+    /* 단청 테두리 */
     .card::before {
       content:"";
       position:absolute;
       top:5px; left:5px; right:5px; bottom:5px;
       border:1px solid #2f5d50;
-      pointer-events:none;
+    }
+
+    /* 아이콘 */
+    .icon {
+      width:60px;
+      height:60px;
+      margin:0 auto 10px;
+      background:#2f5d50;
+      border-radius:50%;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      color:#d4af37;
+      font-size:24px;
     }
 
     .card:hover {
       transform:translateY(-5px);
       box-shadow:0 5px 15px rgba(0,0,0,0.15);
-      background:#f9f6ef;
     }
 
     footer {
@@ -108,7 +136,9 @@
 <body>
 
 <header>
-  <div class="logo">연안송씨 대종회</div>
+  <!-- 로고 이미지 (logo.png 파일 추가하세요) -->
+  <img src="logo.png" class="logo-img">
+  <div class="logo-text">연안송씨 대종회</div>
 </header>
 
 <nav>
@@ -175,17 +205,69 @@
 <div class="hero"></div>
 
 <section class="section">
-  <div class="card">인터넷족보열람</div>
-  <div class="card">족보등재안내문</div>
-  <div class="card">등재신청서작성요령</div>
-  <div class="card">등재신청서작성견본</div>
-  <div class="card">등재신청서양식</div>
-  <div class="card">참찬하신문</div>
+  <div class="card">
+    <div class="icon">📖</div>
+    인터넷족보열람
+  </div>
+
+  <div class="card">
+    <div class="icon">📜</div>
+    족보등재안내문
+  </div>
+
+  <div class="card">
+    <div class="icon">✍️</div>
+    등재신청서작성요령
+  </div>
+
+  <div class="card">
+    <div class="icon">🧾</div>
+    등재신청서작성견본
+  </div>
+
+  <div class="card">
+    <div class="icon">📂</div>
+    등재신청서양식
+  </div>
+
+  <div class="card">
+    <div class="icon">📰</div>
+    참찬하신문
+  </div>
 </section>
 
 <footer>
   ⓒ 연안송씨 대종회. All rights reserved.
 </footer>
 
-</body>
-</html>
+
+<!-- 게시판 (무료 / 서버 없이 localStorage 사용) -->
+<section style="padding:40px 20px;">
+  <h2>자유게시판</h2>
+
+  <input id="title" placeholder="제목" style="width:100%; padding:10px; margin-bottom:10px;">
+  <textarea id="content" placeholder="내용" style="width:100%; padding:10px; height:100px;"></textarea>
+  <button onclick="addPost()" style="margin-top:10px; padding:10px 20px;">글쓰기</button>
+
+  <ul id="postList" style="margin-top:20px;"></ul>
+</section>
+
+<script>
+function getPosts(){
+  return JSON.parse(localStorage.getItem('posts')||'[]');
+}
+
+function savePosts(posts){
+  localStorage.setItem('posts', JSON.stringify(posts));
+}
+
+function renderPosts(){
+  const list = document.getElementById('postList');
+  list.innerHTML='';
+
+  const posts = getPosts();
+
+  posts.reverse().forEach((p, i)=>{
+    const li = document.createElement('li');
+    li.style.borderBottom='1px solid #ccc';
+    li.style.padding='10px
