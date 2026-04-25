@@ -270,4 +270,35 @@ function renderPosts(){
   posts.reverse().forEach((p, i)=>{
     const li = document.createElement('li');
     li.style.borderBottom='1px solid #ccc';
-    li.style.padding='10px
+    li.style.padding='10px 0';
+
+    li.innerHTML = `<b>${p.title}</b><br>${p.content}`;
+
+    list.appendChild(li);
+  });
+}
+
+function addPost(){
+  const title = document.getElementById('title').value;
+  const content = document.getElementById('content').value;
+
+  if(!title || !content){
+    alert('제목과 내용을 입력하세요');
+    return;
+  }
+
+  const posts = getPosts();
+  posts.push({title, content});
+  savePosts(posts);
+
+  document.getElementById('title').value='';
+  document.getElementById('content').value='';
+
+  renderPosts();
+}
+
+renderPosts();
+</script>
+
+</body>
+</html>
