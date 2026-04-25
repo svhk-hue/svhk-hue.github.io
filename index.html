@@ -1,94 +1,191 @@
+<!DOCTYPE html>
 <html lang="ko">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Yeonansong</title>
+  <title>연안송씨 대종회</title>
+
+  <!-- 한문/전통 느낌 폰트 -->
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;600&display=swap" rel="stylesheet">
+
   <style>
-    body { margin:0; font-family: Arial, sans-serif; }
-    header { background:#2c3e50; color:white; padding:15px; display:flex; align-items:center; justify-content:space-between; }
+    body { margin:0; font-family: 'Noto Serif KR', serif; background:#f4f1ea; }
 
-header h1 { margin:0; font-size:20px; white-space:nowrap; }
+    header { background:#f4f1ea; padding:10px 20px; border-bottom:2px solid #8b5a2b; }
+    .logo { font-size:22px; font-weight:600; color:#3b2f2f; }
 
-nav { margin-left:30px; }
-
+    /* 네비게이션 */
+    nav { background:#2f5d50; }
     nav ul { list-style:none; margin:0; padding:0; display:flex; }
-    nav ul li { position:relative; }
-    nav ul li a { display:block; padding:10px 15px; color:white; text-decoration:none; }
-    nav ul li:hover { background:#34495e; }
+    nav li { flex:1; position:relative; }
+
+    nav a {
+      display:block;
+      padding:15px;
+      color:#d4af37; /* 금색 포인트 */
+      text-align:center;
+      text-decoration:none;
+      font-weight:600;
+      letter-spacing:1px;
+    }
+
+    nav a:hover { background:#23463c; color:#f5d76e; }
 
     /* 드롭다운 */
-    nav ul li ul {
+    .dropdown {
       display:none;
       position:absolute;
       top:100%;
       left:0;
-      background:#34495e;
-      min-width:180px;
-      flex-direction:column;
+      width:100%;
+      background:#f9f6ef;
+      box-shadow:0 5px 10px rgba(0,0,0,0.1);
+      z-index:1000;
     }
 
-    nav ul li:hover ul {
+    .dropdown a {
+      color:#3b2f2f;
+      padding:12px;
+      text-align:left;
+      border-bottom:1px solid #e5ded3;
+      background:#f9f6ef;
+      font-size:14px;
+    }
+
+    .dropdown a:hover { background:#e8e1d5; }
+
+    nav li:hover .dropdown {
       display:block;
     }
 
-    nav ul li ul li a {
-      padding:10px;
+    .hero {
+      height:400px;
+      background:url('main.jpg') center/cover no-repeat;
     }
 
-    .hero { background:#ecf0f1; padding:80px; text-align:center; }
-    .section { padding:40px; }
-    footer { background:#2c3e50; color:white; text-align:center; padding:20px; }
-    .btn { background:#3498db; color:white; padding:10px 20px; border:none; cursor:pointer; }
+    .section {
+      padding:40px 20px;
+      display:grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap:20px;
+    }
+
+    /* 단청 느낌 카드 */
+    .card {
+      border:3px solid #8b5a2b;
+      padding:20px;
+      text-align:center;
+      cursor:pointer;
+      transition:0.2s;
+      background:#fffdf8;
+      position:relative;
+    }
+
+    /* 단청 장식 테두리 효과 */
+    .card::before {
+      content:"";
+      position:absolute;
+      top:5px; left:5px; right:5px; bottom:5px;
+      border:1px solid #2f5d50;
+      pointer-events:none;
+    }
+
+    .card:hover {
+      transform:translateY(-5px);
+      box-shadow:0 5px 15px rgba(0,0,0,0.15);
+      background:#f9f6ef;
+    }
+
+    footer {
+      background:#2f2a26;
+      color:#d4af37;
+      text-align:center;
+      padding:20px;
+      font-size:14px;
+    }
   </style>
 </head>
 <body>
 
 <header>
-  <h1>연안송씨 종친회</h1>
-  <nav>
-    <ul>
-      <li><a href="#">홈</a></li>
-
-      <li>
-        <a href="#about">종친회소개</a>
-        <ul>
-          <li><a href="#about">인사말</a></li>
-          <li><a href="#history">연혁</a></li>
-          <li><a href="#organization">조직도</a></li>
-        </ul>
-      </li>
-
-      <li>
-        <a href="#news">종친회 소식</a>
-        <ul>
-          <li><a href="#news">공지사항</a></li>
-          <li><a href="#events">행사안내</a></li>
-        </ul>
-      </li>
-
-      <li>
-        <a href="#archive">자료실</a>
-        <ul>
-          <li><a href="#genealogy">족보</a></li>
-          <li><a href="#photos">사진자료</a></li>
-        </ul>
-      </li>
-
-      <li>
-        <a href="#board">게시판</a>
-        <ul>
-          <li><a href="#board">자유게시판</a></li>
-          <li><a href="#qna">문의하기</a></li>
-        </ul>
-      </li>
-
-      <li><a href="#contact">찾아오시는길</a></li>
-    </ul>
-  </nav>
+  <div class="logo">연안송씨 대종회</div>
 </header>
 
-<section class="hero">
-  <h2>연안송씨 홈페이지에 오신 것을 환영합니다</h2>
-  <p>종친회 소식과 정보를 공유하는 공간입니다.</p>
-  <button class="btn">더 알아보기</button>
+<nav>
+  <ul>
+    <li>
+      <a href="#">대종회소개</a>
+      <div class="dropdown">
+        <a href="#">인사말</a>
+        <a href="#">연혁</a>
+        <a href="#">조직도</a>
+      </div>
+    </li>
+
+    <li>
+      <a href="#">뿌리탐구</a>
+      <div class="dropdown">
+        <a href="#">시조</a>
+        <a href="#">가계도</a>
+      </div>
+    </li>
+
+    <li>
+      <a href="#">인터넷족보</a>
+      <div class="dropdown">
+        <a href="#">족보열람</a>
+        <a href="#">등재신청</a>
+      </div>
+    </li>
+
+    <li>
+      <a href="#">대종회자료실</a>
+      <div class="dropdown">
+        <a href="#">공지사항</a>
+        <a href="#">자료실</a>
+      </div>
+    </li>
+
+    <li>
+      <a href="#">전통자료실</a>
+      <div class="dropdown">
+        <a href="#">문헌자료</a>
+        <a href="#">사진자료</a>
+      </div>
+    </li>
+
+    <li>
+      <a href="#">은열소강향회</a>
+      <div class="dropdown">
+        <a href="#">소개</a>
+        <a href="#">활동</a>
+      </div>
+    </li>
+
+    <li>
+      <a href="#">열린마당</a>
+      <div class="dropdown">
+        <a href="#">자유게시판</a>
+        <a href="#">문의하기</a>
+      </div>
+    </li>
+  </ul>
+</nav>
+
+<div class="hero"></div>
+
+<section class="section">
+  <div class="card">인터넷족보열람</div>
+  <div class="card">족보등재안내문</div>
+  <div class="card">등재신청서작성요령</div>
+  <div class="card">등재신청서작성견본</div>
+  <div class="card">등재신청서양식</div>
+  <div class="card">참찬하신문</div>
 </section>
+
+<footer>
+  ⓒ 연안송씨 대종회. All rights reserved.
+</footer>
+
+</body>
+</html>
