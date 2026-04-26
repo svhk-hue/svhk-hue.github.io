@@ -10,17 +10,10 @@
   <style>
     body { margin:0; font-family:'Noto Serif KR', serif; background:#f4f1ea; }
 
-    /* 상단 유틸 */
-    .topbar {
-      display:flex; justify-content:flex-end; gap:20px;
-      padding:8px 20px; font-size:13px; color:#555;
-      background:#f4f1ea;
-    }
-
     /* 헤더 */
     header {
       display:flex; justify-content:space-between; align-items:center;
-      padding:15px 20px; background:#f4f1ea;
+      padding:20px; background:#f4f1ea;
       border-bottom:2px solid #8b5a2b;
     }
 
@@ -60,23 +53,21 @@
       border-bottom: 1px solid #ddd;
     }
 
-    /* 서브메뉴들을 가로로 나열 */
     .dropdown-inner {
       max-width:1200px; margin:0 auto;
       display:flex; 
-      justify-content: center; /* 가운데 정렬 */
-      gap: 40px; /* 메뉴 사이 간격 */
+      justify-content: center; 
+      gap: 40px; 
     }
 
     .dropdown a {
       display:inline-block; padding:5px 10px; 
       color:#3b2f2f; font-weight: 400; font-size: 15px;
-      white-space: nowrap; /* 줄바꿈 방지 */
+      white-space: nowrap; 
     }
     
     .dropdown a:hover { color:#2f5d50; font-weight: 600; text-decoration: underline; background: transparent; }
 
-    /* 마우스 호버 시 표시 */
     nav li:hover .dropdown { display:block; }
 
     /* 메인 히어로 */
@@ -95,7 +86,6 @@
     .section {
       padding:40px 20px;
       display:grid;
-      /* 정확히 6등분하여 한 줄에 배치 */
       grid-template-columns: repeat(6, 1fr); 
       gap:15px;
       max-width: 1200px;
@@ -110,7 +100,7 @@
       position:relative;
       cursor: pointer;
       font-size: 14px;
-      word-break: keep-all; /* 단어 단위 줄바꿈 방지 */
+      word-break: keep-all; 
     }
 
     .card::before {
@@ -138,7 +128,6 @@
       margin-top: 50px;
     }
 
-    /* 반응형: 화면이 아주 작아지면 카드 레이아웃 조정 */
     @media (max-width: 900px) {
       .section { grid-template-columns: repeat(3, 1fr); }
       .dropdown-inner { gap: 15px; flex-wrap: wrap; }
@@ -146,10 +135,6 @@
   </style>
 </head>
 <body>
-
-<div class="topbar">
-  로그인 | 회원가입 | 사이트맵
-</div>
 
 <header>
   <div class="logo-wrap">
