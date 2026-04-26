@@ -32,7 +32,6 @@
     .search-box button { padding:10px; background:#2f5d50; color:#fff; border:none; cursor:pointer; }
 
     /* 메뉴 */
-    /* 서브메뉴가 화면 전체 너비로 올바르게 떨어지도록 nav에 position: relative 부여 */
     nav { 
       background:#2f5d50; 
       border-bottom:3px solid #d4af37; 
@@ -40,8 +39,6 @@
     }
 
     nav ul { display:flex; margin:0; padding:0; list-style:none; }
-    
-    /* li에서 position: relative를 제거하여 드롭다운이 nav 기준으로 넓어지게 함 */
     nav li { flex:1; text-align:center; }
 
     nav a {
@@ -51,54 +48,56 @@
 
     nav a:hover { background:#23463c; }
 
-    /* 메가메뉴 (드롭다운) */
+    /* 드롭다운 (가로 1줄 스타일) */
     .dropdown {
       display:none; 
       position:absolute; left:0; top:100%;
-      width:100%; /* 100vw 대신 100% 사용으로 스크롤바 방지 */
+      width:100%; 
       background:#f9f6ef;
-      padding:20px 0; 
+      padding:15px 0; 
       box-shadow:0 5px 15px rgba(0,0,0,0.15);
       z-index: 10;
+      border-bottom: 1px solid #ddd;
     }
 
+    /* 서브메뉴들을 가로로 나열 */
     .dropdown-inner {
       max-width:1200px; margin:0 auto;
-      display:flex; justify-content:space-around;
-      gap:20px;
-    }
-
-    .dropdown-col {
-      flex: 1;
-      text-align: center;
+      display:flex; 
+      justify-content: center; /* 가운데 정렬 */
+      gap: 40px; /* 메뉴 사이 간격 */
     }
 
     .dropdown a {
-      display:block; padding:8px 0; color:#3b2f2f; font-weight: 400; font-size: 14px;
+      display:inline-block; padding:5px 10px; 
+      color:#3b2f2f; font-weight: 400; font-size: 15px;
+      white-space: nowrap; /* 줄바꿈 방지 */
     }
     
     .dropdown a:hover { color:#2f5d50; font-weight: 600; text-decoration: underline; background: transparent; }
 
-    /* 마우스 호버 시 드롭다운 표시 */
+    /* 마우스 호버 시 표시 */
     nav li:hover .dropdown { display:block; }
 
-    /* 메인 */
+    /* 메인 히어로 */
     .hero { position:relative; }
-    .hero img { width:100%; display:block; }
+    .hero img { width:100%; display:block; height: 400px; object-fit: cover; }
 
     .hero-text {
       position:absolute; right:5%; top:50%; transform:translateY(-50%);
       color:#3b2f2f; max-width:400px;
+      background: rgba(255,255,255,0.7); padding: 20px; border-radius: 5px;
     }
 
     .hero-text h2 { font-size:28px; margin-bottom:10px; }
 
-    /* 카드 */
+    /* 카드 섹션 - 6개 메뉴 가로 1줄 배치 */
     .section {
       padding:40px 20px;
       display:grid;
-      grid-template-columns: repeat(auto-fit,minmax(200px,1fr));
-      gap:20px;
+      /* 정확히 6등분하여 한 줄에 배치 */
+      grid-template-columns: repeat(6, 1fr); 
+      gap:15px;
       max-width: 1200px;
       margin: 0 auto;
     }
@@ -106,26 +105,29 @@
     .card {
       background:#fffdf8;
       border:2px solid #8b5a2b;
-      padding:20px; text-align:center;
+      padding:20px 10px; 
+      text-align:center;
       position:relative;
       cursor: pointer;
+      font-size: 14px;
+      word-break: keep-all; /* 단어 단위 줄바꿈 방지 */
     }
 
     .card::before {
       content:"";
-      position:absolute; inset:5px;
+      position:absolute; inset:4px;
       border:1px solid #2f5d50;
     }
 
     .card:hover { background: #f4f1ea; }
 
     .icon {
-      width:80px; height:80px;
+      width:50px; height:50px;
       margin:0 auto 10px;
       display:flex; align-items:center; justify-content:center;
     }
 
-    .icon img { width:70px; height:70px; object-fit:contain; }
+    .icon img { width:100%; height:100%; object-fit:contain; }
 
     /* 푸터 */
     footer {
@@ -133,9 +135,14 @@
       padding:30px 20px;
       display:flex; justify-content:space-between;
       flex-wrap:wrap;
+      margin-top: 50px;
     }
 
-    footer div { margin-bottom:10px; }
+    /* 반응형: 화면이 아주 작아지면 카드 레이아웃 조정 */
+    @media (max-width: 900px) {
+      .section { grid-template-columns: repeat(3, 1fr); }
+      .dropdown-inner { gap: 15px; flex-wrap: wrap; }
+    }
   </style>
 </head>
 <body>
@@ -162,16 +169,12 @@
       <a href="#">대종회 소개</a>
       <div class="dropdown">
         <div class="dropdown-inner">
-          <div class="dropdown-col">
-            <a href="#">인사말</a>
-            <a href="#">연혁</a>
-            <a href="#">조직도 및 임원</a>
-          </div>
-          <div class="dropdown-col">
-            <a href="#">송씨의 기원</a>
-            <a href="#">시조 소개</a>
-            <a href="#">오시는 길</a>
-          </div>
+          <a href="#">인사말</a>
+          <a href="#">연혁</a>
+          <a href="#">조직도 및 임원</a>
+          <a href="#">송씨의 기원</a>
+          <a href="#">시조 소개</a>
+          <a href="#">오시는 길</a>
         </div>
       </div>
     </li>
@@ -180,14 +183,10 @@
       <a href="#">인터넷족보</a>
       <div class="dropdown">
         <div class="dropdown-inner">
-          <div class="dropdown-col">
-            <a href="#">족보검색</a>
-            <a href="#">족보열람</a>
-          </div>
-          <div class="dropdown-col">
-            <a href="#">수단(등재)신청</a>
-            <a href="#">수단신청현황</a>
-          </div>
+          <a href="#">족보검색</a>
+          <a href="#">족보열람</a>
+          <a href="#">수단(등재)신청</a>
+          <a href="#">수단신청현황</a>
         </div>
       </div>
     </li>
@@ -196,14 +195,10 @@
       <a href="#">자료실</a>
       <div class="dropdown">
         <div class="dropdown-inner">
-          <div class="dropdown-col">
-            <a href="#">종보(회보)</a>
-            <a href="#">일반자료</a>
-          </div>
-          <div class="dropdown-col">
-            <a href="#">사진자료</a>
-            <a href="#">영상자료</a>
-          </div>
+          <a href="#">종보(회보)</a>
+          <a href="#">일반자료</a>
+          <a href="#">사진자료</a>
+          <a href="#">영상자료</a>
         </div>
       </div>
     </li>
@@ -212,14 +207,10 @@
       <a href="#">전통자료실</a>
       <div class="dropdown">
         <div class="dropdown-inner">
-          <div class="dropdown-col">
-            <a href="#">선조유적</a>
-            <a href="#">고문헌</a>
-          </div>
-          <div class="dropdown-col">
-            <a href="#">제례안내</a>
-            <a href="#">가승 및 문집</a>
-          </div>
+          <a href="#">선조유적</a>
+          <a href="#">고문헌</a>
+          <a href="#">제례안내</a>
+          <a href="#">가승 및 문집</a>
         </div>
       </div>
     </li>
@@ -228,14 +219,10 @@
       <a href="#">장학회</a>
       <div class="dropdown">
         <div class="dropdown-inner">
-          <div class="dropdown-col">
-            <a href="#">장학회 소개</a>
-            <a href="#">장학회 연혁</a>
-          </div>
-          <div class="dropdown-col">
-            <a href="#">장학생 선발안내</a>
-            <a href="#">후원안내</a>
-          </div>
+          <a href="#">장학회 소개</a>
+          <a href="#">장학회 연혁</a>
+          <a href="#">장학생 선발안내</a>
+          <a href="#">후원안내</a>
         </div>
       </div>
     </li>
@@ -244,14 +231,10 @@
       <a href="#">열린마당</a>
       <div class="dropdown">
         <div class="dropdown-inner">
-          <div class="dropdown-col">
-            <a href="#">공지사항</a>
-            <a href="#">종친행사</a>
-          </div>
-          <div class="dropdown-col">
-            <a href="#">자유게시판</a>
-            <a href="#">질문과 답변</a>
-          </div>
+          <a href="#">공지사항</a>
+          <a href="#">종친행사</a>
+          <a href="#">자유게시판</a>
+          <a href="#">질문과 답변</a>
         </div>
       </div>
     </li>
