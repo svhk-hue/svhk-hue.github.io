@@ -3,309 +3,204 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
- <title>연안송씨 대종회</title>
-  <!-- 전통 느낌 폰트 -->
+  <title>연안송씨 대종회</title>
+
   <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;600&display=swap" rel="stylesheet">
 
   <style>
-    body { margin:0; font-family: 'Noto Serif KR', serif; background:#f4f1ea; }
+    body { margin:0; font-family:'Noto Serif KR', serif; background:#f4f1ea; }
 
-    header {
+    /* 상단 유틸 */
+    .topbar {
+      display:flex; justify-content:flex-end; gap:20px;
+      padding:8px 20px; font-size:13px; color:#555;
       background:#f4f1ea;
-      padding:15px 20px;
+    }
+
+    /* 헤더 */
+    header {
+      display:flex; justify-content:space-between; align-items:center;
+      padding:15px 20px; background:#f4f1ea;
       border-bottom:2px solid #8b5a2b;
-      display:flex;
-      align-items:center;
-      gap:15px;
     }
 
-    /* 로고 이미지 */
-    .logo-img {
-      height:50px;
+    .logo-wrap { display:flex; align-items:center; gap:15px; }
+
+    .logo-img { height:60px; }
+
+    .logo-text { font-size:26px; font-weight:600; }
+
+    .search-box input {
+      padding:10px; border:1px solid #ccc;
     }
 
-    .logo-text {
-      font-size:24px;
-      font-weight:600;
-      color:#3b2f2f;
+    .search-box button {
+      padding:10px; background:#2f5d50; color:#fff; border:none;
     }
 
-    /* 네비게이션 */
-    nav {
-      background:#2f5d50;
-      border-bottom:3px solid #d4af37; /* 금색 라인 */
-    }
+    /* 메뉴 */
+    nav { background:#2f5d50; border-bottom:3px solid #d4af37; }
 
-    nav ul { list-style:none; margin:0; padding:0; display:flex; }
-    nav li { flex:1; position:relative; }
+    nav ul { display:flex; margin:0; padding:0; list-style:none; }
+
+    nav li { flex:1; text-align:center; position:relative; }
 
     nav a {
-      display:block;
-      padding:15px;
-      color:#d4af37;
-      text-align:center;
-      text-decoration:none;
-      font-weight:600;
+      display:block; padding:15px;
+      color:#d4af37; text-decoration:none;
     }
 
-    nav a:hover { background:#23463c; color:#f5d76e; }
+    nav a:hover { background:#23463c; }
 
-    /* 드롭다운 */
+    /* 메가메뉴 */
     .dropdown {
-      display:none;
-      position:absolute;
-      top:100%;
-      left:0;
-      width:100%;
-      background:#f9f6ef;
-      box-shadow:0 5px 10px rgba(0,0,0,0.1);
-      z-index:1000;
+      display:none; position:absolute; left:0; top:100%;
+      width:100vw; background:#f9f6ef;
+      padding:20px; box-shadow:0 5px 15px rgba(0,0,0,0.15);
+    }
+
+    .dropdown-inner {
+      max-width:1200px; margin:0 auto;
+      display:grid; grid-template-columns: repeat(6,1fr);
+      gap:20px;
     }
 
     .dropdown a {
-      color:#3b2f2f;
-      padding:12px;
-      text-align:left;
-      border-bottom:1px solid #e5ded3;
-      background:#f9f6ef;
-      font-size:14px;
+      display:block; padding:5px 0; color:#3b2f2f;
     }
-
-    .dropdown a:hover { background:#e8e1d5; }
 
     nav li:hover .dropdown { display:block; }
 
-    .hero {
-      width:100%;
-      height:auto;
+    /* 메인 */
+    .hero { position:relative; }
+
+    .hero img { width:100%; display:block; }
+
+    .hero-text {
+      position:absolute; right:5%; top:50%; transform:translateY(-50%);
+      color:#3b2f2f; max-width:400px;
     }
 
-    .hero img {
-      width:100%;
-      height:auto;
-      display:block;
-    }
+    .hero-text h2 { font-size:28px; margin-bottom:10px; }
 
+    /* 카드 */
     .section {
       padding:40px 20px;
       display:grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-      gap:25px;
+      grid-template-columns: repeat(auto-fit,minmax(200px,1fr));
+      gap:20px;
     }
 
-    /* 카드 */
     .card {
-      border:3px solid #8b5a2b;
-      padding:20px;
-      text-align:center;
       background:#fffdf8;
+      border:2px solid #8b5a2b;
+      padding:20px; text-align:center;
       position:relative;
     }
 
-    /* 단청 테두리 */
     .card::before {
       content:"";
-      position:absolute;
-      top:5px; left:5px; right:5px; bottom:5px;
+      position:absolute; inset:5px;
       border:1px solid #2f5d50;
     }
 
-    /* 아이콘 */
     .icon {
-      width:60px;
-      height:60px;
+      width:80px; height:80px;
       margin:0 auto 10px;
-      background:#2f5d50;
-      border-radius:50%;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      color:#d4af37;
-      font-size:24px;
+      display:flex; align-items:center; justify-content:center;
     }
 
-    .card:hover {
-      transform:translateY(-5px);
-      box-shadow:0 5px 15px rgba(0,0,0,0.15);
+    .icon img {
+      width:70px;
+      height:70px;
+      object-fit:contain;
     }
 
+    /* 푸터 */
     footer {
-      background:#2f2a26;
-      color:#d4af37;
-      text-align:center;
-      padding:20px;
-      font-size:14px;
+      background:#0f3e3a; color:#d4af37;
+      padding:30px 20px;
+      display:flex; justify-content:space-between;
+      flex-wrap:wrap;
     }
+
+    footer div { margin-bottom:10px; }
+
   </style>
 </head>
 <body>
 
+<div class="topbar">
+  로그인 | 회원가입 | 사이트맵
+</div>
+
 <header>
-  <!-- 로고 이미지 (logo.png 파일 추가하세요) -->
-  <img src="logo.png" class="logo-img">
-  <div class="logo-text">연안송씨 대종회</div>
+  <div class="logo-wrap">
+    <img src="logo.png" class="logo-img">
+    <div class="logo-text">延安宋氏大宗會</div>
+  </div>
+
+  <div class="search-box">
+    <input placeholder="검색어 입력">
+    <button>🔍</button>
+  </div>
 </header>
 
 <nav>
   <ul>
     <li>
-      <a href="#">대종회소개</a>
+      <a href="#">대종회 소개</a>
       <div class="dropdown">
-        <a href="#">인사말</a>
-        <a href="#">연혁</a>
-        <a href="#">조직도</a>
-      </div>
-    </li>
-
-    <li>
-      <a href="#">뿌리탐구</a>
-      <div class="dropdown">
-        <a href="#">시조</a>
-        <a href="#">가계도</a>
+        <div class="dropdown-inner">
+          <div><a>인사말</a><a>연혁</a><a>조직도</a></div>
+          <div><a>조씨의 기원</a><a>시조 소개</a></div>
+        </div>
       </div>
     </li>
 
     <li>
       <a href="#">인터넷족보</a>
       <div class="dropdown">
-        <a href="#">족보열람</a>
-        <a href="#">등재신청</a>
+        <div class="dropdown-inner">
+          <div><a>족보검색</a><a>족보열람</a></div>
+        </div>
       </div>
     </li>
 
-    <li>
-      <a href="#">대종회자료실</a>
-      <div class="dropdown">
-        <a href="#">공지사항</a>
-        <a href="#">자료실</a>
-      </div>
-    </li>
-
-    <li>
-      <a href="#">전통자료실</a>
-      <div class="dropdown">
-        <a href="#">문헌자료</a>
-        <a href="#">사진자료</a>
-      </div>
-    </li>
-
-    <li>
-      <a href="#">은열소강향회</a>
-      <div class="dropdown">
-        <a href="#">소개</a>
-        <a href="#">활동</a>
-      </div>
-    </li>
-
-    <li>
-      <a href="#">열린마당</a>
-      <div class="dropdown">
-        <a href="#">자유게시판</a>
-        <a href="#">문의하기</a>
-      </div>
-    </li>
+    <li><a href="#">자료실</a></li>
+    <li><a href="#">전통자료실</a></li>
+    <li><a href="#">장학회</a></li>
+    <li><a href="#">열린마당</a></li>
   </ul>
 </nav>
 
 <div class="hero">
-  <img src="main.jpg" alt="메인 이미지">
+  <img src="main.jpg">
+  <div class="hero-text">
+    <h2>뿌리를 잊지 않는 마음</h2>
+    <p>미래를 여는 자랑스러운 종친회</p>
+  </div>
 </div>
 
 <section class="section">
-  <div class="card">
-    <div class="icon">📖</div>
-    인터넷족보열람
-  </div>
-
-  <div class="card">
-    <div class="icon">📜</div>
-    족보등재안내문
-  </div>
-
-  <div class="card">
-    <div class="icon">✍️</div>
-    등재신청서작성요령
-  </div>
-
-  <div class="card">
-    <div class="icon">🧾</div>
-    등재신청서작성견본
-  </div>
-
-  <div class="card">
-    <div class="icon">📂</div>
-    등재신청서양식
-  </div>
-
-  <div class="card">
-    <div class="icon">📰</div>
-    참찬하신문
-  </div>
+  <div class="card"><div class="icon"><img src="icons/icon1.png"></div>인터넷족보열람</div>
+  <div class="card"><div class="icon"><img src="icons/icon2.png"></div>족보등재안내문</div>
+  <div class="card"><div class="icon"><img src="icons/icon3.png"></div>등재신청</div>
+  <div class="card"><div class="icon"><img src="icons/icon4.png"></div>신청서</div>
+  <div class="card"><div class="icon"><img src="icons/icon5.png"></div>자료실</div>
+  <div class="card"><div class="icon"><img src="icons/icon6.png"></div>소식</div>
 </section>
 
 <footer>
-  ⓒ 연안송씨 대종회. All rights reserved.
+  <div>
+    연안송씨 대종회<br>
+    TEL: 000-0000-0000
+  </div>
+  <div>
+    Copyright © 2026
+  </div>
 </footer>
-
-
-<!-- 게시판 (무료 / 서버 없이 localStorage 사용) -->
-<section style="padding:40px 20px;">
-  <h2>자유게시판</h2>
-
-  <input id="title" placeholder="제목" style="width:100%; padding:10px; margin-bottom:10px;">
-  <textarea id="content" placeholder="내용" style="width:100%; padding:10px; height:100px;"></textarea>
-  <button onclick="addPost()" style="margin-top:10px; padding:10px 20px;">글쓰기</button>
-
-  <ul id="postList" style="margin-top:20px;"></ul>
-</section>
-
-<script>
-function getPosts(){
-  return JSON.parse(localStorage.getItem('posts')||'[]');
-}
-
-function savePosts(posts){
-  localStorage.setItem('posts', JSON.stringify(posts));
-}
-
-function renderPosts(){
-  const list = document.getElementById('postList');
-  list.innerHTML='';
-
-  const posts = getPosts();
-
-  posts.reverse().forEach((p, i)=>{
-    const li = document.createElement('li');
-    li.style.borderBottom='1px solid #ccc';
-    li.style.padding='10px 0';
-
-    li.innerHTML = `<b>${p.title}</b><br>${p.content}`;
-
-    list.appendChild(li);
-  });
-}
-
-function addPost(){
-  const title = document.getElementById('title').value;
-  const content = document.getElementById('content').value;
-
-  if(!title || !content){
-    alert('제목과 내용을 입력하세요');
-    return;
-  }
-
-  const posts = getPosts();
-  posts.push({title, content});
-  savePosts(posts);
-
-  document.getElementById('title').value='';
-  document.getElementById('content').value='';
-
-  renderPosts();
-}
-
-renderPosts();
-</script>
 
 </body>
 </html>
+
