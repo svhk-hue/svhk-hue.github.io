@@ -14,6 +14,99 @@
   <div class="tree"></div>
   <div class="crow"></div>
 </section>
+
+.top-scene{
+height:170px;
+position:relative;
+overflow:hidden;
+background:
+linear-gradient(to bottom,#ece7da 0%,#f7f3ea 65%,#f6f2e9 100%);
+border-bottom:1px solid rgba(184,146,68,.35);
+}
+
+/* 안개 흐름 */
+.mist{
+position:absolute; inset:0;
+background:
+radial-gradient(circle at 20% 60%, rgba(255,255,255,.55), transparent 30%),
+radial-gradient(circle at 60% 40%, rgba(255,255,255,.4), transparent 28%),
+radial-gradient(circle at 85% 70%, rgba(255,255,255,.35), transparent 25%);
+animation:mistMove 18s linear infinite alternate;
+}
+
+/* 은은한 햇살 */
+.sun-glow{
+position:absolute;
+width:220px;height:220px;
+right:10%;top:-90px;
+border-radius:50%;
+background:radial-gradient(circle, rgba(255,220,160,.45), transparent 65%);
+animation:pulseGlow 6s ease-in-out infinite;
+}
+
+/* 한옥 지붕 */
+.hanok{
+position:absolute;
+left:50%;
+bottom:0;
+transform:translateX(-50%);
+width:420px;
+height:90px;
+background:
+linear-gradient(to bottom,#29363b,#111);
+clip-path:polygon(0 100%,8% 55%,22% 40%,50% 0,78% 40%,92% 55%,100% 100%);
+filter:drop-shadow(0 8px 8px rgba(0,0,0,.18));
+}
+
+/* 아름드리 나무 */
+.tree{
+position:absolute;
+left:8%;
+bottom:0;
+width:230px;height:150px;
+background:
+radial-gradient(circle at 50% 35%, #38472c 0%, #2d3a23 48%, transparent 50%),
+radial-gradient(circle at 35% 55%, #415430 0%, #314126 45%, transparent 47%),
+radial-gradient(circle at 70% 55%, #415430 0%, #314126 45%, transparent 47%);
+}
+.tree::after{
+content:'';
+position:absolute;
+left:102px;bottom:0;
+width:18px;height:88px;
+background:#4a3521;
+border-radius:8px;
+}
+
+/* 까마귀 */
+.crow{
+position:absolute;
+right:-60px;
+top:35px;
+width:44px;height:24px;
+background:#111;
+clip-path:polygon(0 55%,20% 30%,42% 50%,62% 22%,100% 52%,66% 65%,45% 48%,20% 72%);
+animation:crowFly 14s linear infinite;
+filter:drop-shadow(0 3px 3px rgba(0,0,0,.2));
+}
+
+/* 애니메이션 */
+@keyframes crowFly{
+0%{right:-60px;top:55px;transform:scale(.9) rotate(0)}
+25%{top:35px}
+50%{top:48px;transform:scale(1)}
+75%{top:28px}
+100%{right:105%;top:52px;transform:scale(.8)}
+}
+@keyframes mistMove{
+0%{transform:translateX(-30px)}
+100%{transform:translateX(35px)}
+}
+@keyframes pulseGlow{
+0%,100%{opacity:.55;transform:scale(1)}
+50%{opacity:.9;transform:scale(1.08)}
+}
+  
 .top{display:flex;justify-content:space-between;align-items:center;padding:26px 42px;background:#f6f2e9;animation:fadeDown 1s ease both}
 .brand{display:flex;gap:16px;align-items:center}.seal{width:220px;height:auto;display:block;transition:transform .6s ease}.brand:hover .seal{transform:scale(1.04)}.title{display:none}.sub{display:none}
 .right{text-align:right}.links{font-size:14px;color:#555;margin-bottom:10px}.search{display:flex;border:1px solid #7d735f}.search input{padding:12px 14px;width:260px;border:none;background:#fff}.search button{width:56px;border:none;background:#0c4850;color:#fff;font-size:20px}
@@ -25,7 +118,15 @@ footer{background:#083d45;color:#ddd;padding:22px 40px;display:flex;justify-cont
 </style>
 </head>
 <body>
+<section class="top-scene">
+  <div class="mist"></div>
+  <div class="sun-glow"></div>
+  <div class="hanok"></div>
+  <div class="tree"></div>
+  <div class="crow"></div>
+</section>
 <header class='top'>
+  <header class='top'>
 <div class='brand'><img src='logos.png' class='seal' alt='연안송씨 대종회 로고'></div>
 <div class='right'><div class='links'>로그인 ｜ 회원가입 ｜ 사이트맵</div><div class='search'><input placeholder='검색어를 입력하세요'><button>🔍</button></div></div>
 </header>
