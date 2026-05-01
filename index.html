@@ -1,247 +1,141 @@
+<!-- ================== index.html ================== -->
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>연안송씨 대종회</title>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;600;700&display=swap" rel="stylesheet">
-  <style>
-    /* 기본 설정 */
-    body { margin:0; font-family:'Noto Serif KR', serif; background:#f4f1ea; color: #333; }
-    ul { list-style:none; margin:0; padding:0; }
-    a { text-decoration:none; color:inherit; transition: 0.3s; }
-
-    /* 헤더 영역 */
-    header {
-      display:flex; justify-content:space-between; align-items:center;
-      padding:25px 50px; background:#f4f1ea;
-    }
-    .logo-wrap { display:flex; align-items:center; gap:15px; }
-    .logo-img { height:70px; } /* 문중 마크 등을 넣으세요 */
-    .logo-text { font-size:32px; font-weight:700; color:#1a1a1a; letter-spacing: -1px; }
-    .logo-sub { font-size:16px; color:#8b5a2b; font-weight:600; margin-top:5px; }
-
-    .search-box { display: flex; align-items: center; background: #fff; border: 1px solid #003d32; border-radius: 4px; overflow: hidden; }
-    .search-box input { border:none; padding:10px 15px; width:200px; outline:none; }
-    .search-box button { background:#003d32; color:#fff; border:none; padding:10px 15px; cursor:pointer; }
-
-    /* 내비게이션 */
-    nav { 
-      background:#003d32; /* 진한 녹색 */
-      border-top: 1px solid rgba(255,255,255,0.1);
-      border-bottom: 4px solid #b38b4d; /* 금색 포인트 라인 */
-      position: sticky; top:0; z-index: 100;
-    }
-    .nav-inner { max-width: 1200px; margin: 0 auto; display: flex; }
-    .nav-inner > li { flex:1; position: relative; }
-    .nav-inner > li > a {
-      display:block; padding:18px 0;
-      color:#e4c99b; font-size: 18px; font-weight: 600; text-align: center;
-    }
-    .nav-inner > li:hover > a { background: rgba(255,255,255,0.1); color:#fff; }
-
-    /* 드롭다운 서브메뉴 (가로형) */
-    .dropdown {
-      display:none; position:absolute; left:0; top:100%; width:100%;
-      background: rgba(255, 255, 255, 0.96); 
-      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-      border-bottom: 2px solid #b38b4d;
-    }
-    .nav-inner > li:hover .dropdown { display: block; }
-    .dropdown-list { padding: 15px 0; }
-    .dropdown-list a {
-      display: block; padding: 8px 0; color: #444; font-size: 15px; font-weight: 400;
-    }
-    .dropdown-list a:hover { color: #b38b4d; font-weight: 600; }
-
-    /* 메인 비주얼 */
-    .hero { 
-      position:relative; width:100%; height:450px; overflow:hidden;
-      background: url('main_bg.jpg') no-repeat center center; background-size: cover;
-    }
-    /* 이미지 대신 그라데이션 효과 (이미지 없을 시 대비) */
-    .hero::after {
-      content: ""; position: absolute; inset: 0;
-      background: linear-gradient(to right, rgba(244,241,234,0.1), rgba(244,241,234,0.9));
-    }
-    .hero-content {
-      position:relative; z-index: 2; max-width: 1200px; margin: 0 auto; height: 100%;
-      display: flex; flex-direction: column; justify-content: center; align-items: flex-end;
-      padding-right: 50px;
-    }
-    .hero-text h2 { font-size:38px; color:#1a1a1a; margin:0; line-height: 1.4; }
-    .hero-text p { font-size:20px; color:#555; margin-top:15px; border-top: 1px solid #b38b4d; padding-top: 15px; }
-
-    /* 카드 섹션 (하단 링크) */
-    .section {
-      max-width: 1240px; margin: -50px auto 50px; /* 히어로 위로 살짝 겹침 */
-      position: relative; z-index: 5;
-      display: grid; grid-template-columns: repeat(6, 1fr); gap: 15px; padding: 0 20px;
-    }
-    .card {
-      background:#fff; border: 1px solid #d1c8b1; padding: 25px 15px;
-      text-align: center; transition: 0.3s; box-shadow: 5px 5px 15px rgba(0,0,0,0.05);
-      display: flex; flex-direction: column; align-items: center;
-    }
-    .card:hover { transform: translateY(-10px); border-color: #b38b4d; }
-    
-    /* 카드 내 문양/아이콘 설정 */
-    .card .icon {
-      width: 60px; height: 60px; background: #f9f6ef; border-radius: 50%;
-      display: flex; align-items: center; justify-content: center; margin-bottom: 15px;
-      border: 1px solid #e4dccb;
-    }
-    .card .icon img { width: 35px; }
-    .card h3 { font-size: 16px; margin: 0 0 8px; color: #1a1a1a; }
-    .card p { font-size: 12px; color: #777; margin: 0; line-height: 1.5; word-break: keep-all; }
-    .card .btn-go { margin-top: 15px; color: #b38b4d; font-size: 18px; }
-
-    /* 푸터 */
-    footer {
-      background:#111; color:#999; padding:40px 50px;
-      display:flex; justify-content:space-between; align-items: center;
-      border-top: 5px solid #003d32;
-    }
-    .footer-info b { color: #e4c99b; font-size: 18px; }
-    .footer-links a { margin-left: 20px; font-size: 14px; }
-    .footer-links a:hover { color: #fff; }
-
-    @media (max-width: 1024px) {
-      .section { grid-template-columns: repeat(3, 1fr); margin-top: 20px; }
-      .hero-content { align-items: center; padding: 0; text-align: center; }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>연안송씨 대종회</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
 
 <header>
   <div class="logo-wrap">
-    <img src="logo.png" alt="연안송씨 마크" class="logo-img">
+    <img src="logo.png" class="logo-img">
     <div>
       <div class="logo-text">延安宋氏 大宗會</div>
-      <div class="logo-sub">연안송씨 은열공파 대종회</div>
+      <div class="logo-sub">진안(전주) 조씨 은열공파 대종회</div>
     </div>
   </div>
 
-  <div class="search-box">
-    <input type="text" placeholder="검색어를 입력하세요">
-    <button>🔍</button>
+  <div>
+    <div class="top-links">로그인 | 회원가입 | 사이트맵</div>
+    <div class="search-box">
+      <input type="text" placeholder="검색어를 입력하세요">
+      <button>🔍</button>
+    </div>
   </div>
 </header>
 
 <nav>
-  <ul class="nav-inner">
-    <li>
-      <a href="#">대종회 소개</a>
-      <div class="dropdown">
-        <div class="dropdown-list">
-          <a href="#">인사말</a><a href="#">연혁</a><a href="#">조직도</a><a href="#">임원 소개</a><a href="#">찾아오시는 길</a>
-        </div>
-      </div>
-    </li>
-    <li>
-      <a href="#">뿌리탐구</a>
-      <div class="dropdown">
-        <div class="dropdown-list">
-          <a href="#">송씨의 기원</a><a href="#">시조 소개</a><a href="#">역대 인물</a><a href="#">문중 유래</a><a href="#">본관 소개</a>
-        </div>
-      </div>
-    </li>
-    <li>
-      <a href="#">인터넷족보</a>
-      <div class="dropdown">
-        <div class="dropdown-list">
-          <a href="#">족보 검색</a><a href="#">족보 열람</a><a href="#">족보 등재신청</a><a href="#">이용안내</a>
-        </div>
-      </div>
-    </li>
-    <li>
-      <a href="#">대종회 자료실</a>
-      <div class="dropdown">
-        <div class="dropdown-list">
-          <a href="#">공지사항</a><a href="#">자료실</a><a href="#">간행물</a><a href="#">행사사진</a>
-        </div>
-      </div>
-    </li>
-    <li>
-      <a href="#">전통자료실</a>
-      <div class="dropdown">
-        <div class="dropdown-list">
-          <a href="#">고문서</a><a href="#">역사 자료</a><a href="#">유물 유적</a><a href="#">동영상 자료</a>
-        </div>
-      </div>
-    </li>
-    <li>
-      <a href="#">열린마당</a>
-      <div class="dropdown">
-        <div class="dropdown-list">
-          <a href="#">자유게시판</a><a href="#">종친 찾기</a><a href="#">전자앨범</a><a href="#">문의하기</a>
-        </div>
-      </div>
-    </li>
-  </ul>
+<ul class="nav-inner">
+
+<li>
+<a href="#">대종회 소개</a>
+<div class="dropdown">
+<div class="dropdown-inner">
+<ul>
+<li>인사말</li><li>연혁</li><li>조직도</li><li>임원 소개</li><li>찾아오시는 길</li>
+</ul>
+<ul>
+<li>조씨의 기원</li><li>시조 소개</li><li>역대 인물</li><li>문중 유래</li><li>본관 소개</li>
+</ul>
+<ul>
+<li>족보 검색</li><li>족보 열람</li><li>족보 신청</li><li>족보 간행물</li><li>이용안내</li>
+</ul>
+<ul>
+<li>공지사항</li><li>자료실</li><li>간행물</li><li>행사 사진</li><li>회원 동정</li>
+</ul>
+<ul>
+<li>고문서</li><li>역사 자료</li><li>문헌 자료</li><li>유물 유적</li><li>동영상 자료</li>
+</ul>
+<ul>
+<li>자유게시판</li><li>문중대화</li><li>종친 찾기</li><li>전자앨범</li><li>사이트 제안</li>
+</ul>
+</div>
+</div>
+</li>
+
+<li><a href="#">뿌리탐구</a></li>
+<li><a href="#">인터넷족보</a></li>
+<li><a href="#">대종회 자료실</a></li>
+<li><a href="#">전통자료실</a></li>
+<li><a href="#">열린마당</a></li>
+
+</ul>
 </nav>
 
 <div class="hero">
   <div class="hero-content">
-    <div class="hero-text">
-      <h2>뿌리를 잊지 않는 마음,<br>미래를 여는 자랑스러운 송씨</h2>
-      <p>선조의 얼을 계승하고 후손의 자긍심을<br>높이는 연안송씨 대종회가 되겠습니다.</p>
+    <div>
+      <h2>뿌리를 잊지 않는 마음,<br>미래를 여는 자랑스러운 조씨</h2>
+      <p>선조의 얼을 계승하고 후손의 자긍심을 높이는 대종회가 되겠습니다.</p>
     </div>
   </div>
 </div>
 
 <section class="section">
-  <div class="card">
-    <div class="icon">📜</div>
-    <h3>인터넷족보열람</h3>
-    <p>우리 문중의 족보를 온라인으로 열람합니다.</p>
-    <div class="btn-go">〉</div>
-  </div>
-  <div class="card">
-    <div class="icon">📖</div>
-    <h3>족보등재안내문</h3>
-    <p>족보 등재 기준과 절차를 안내해 드립니다.</p>
-    <div class="btn-go">〉</div>
-  </div>
-  <div class="card">
-    <div class="icon">✍</div>
-    <h3>등재신청서작성</h3>
-    <p>족보 등재 신청서 작성 방법을 확인하세요.</p>
-    <div class="btn-go">〉</div>
-  </div>
-  <div class="card">
-    <div class="icon">📥</div>
-    <h3>등재신청서양식</h3>
-    <p>족보 등재 신청서를 다운로드 받으세요.</p>
-    <div class="btn-go">〉</div>
-  </div>
-  <div class="card">
-    <div class="icon">📂</div>
-    <h3>대종회자료실</h3>
-    <p>문중의 다양한 역사 자료를 제공합니다.</p>
-    <div class="btn-go">〉</div>
-  </div>
-  <div class="card">
-    <div class="icon">📢</div>
-    <h3>종친회소식</h3>
-    <p>대종회의 주요 행사와 소식을 전합니다.</p>
-    <div class="btn-go">〉</div>
-  </div>
+<div class="card"><img src="icon1.jpg"><h3>인터넷족보열람</h3><p>우리 문중의 족보를 온라인으로 열람합니다.</p></div>
+<div class="card"><img src="icon2.jpg"><h3>족보등재안내문</h3><p>족보 등재 기준과 절차 안내</p></div>
+<div class="card"><img src="icon3.jpg"><h3>등재신청서작성요령</h3><p>작성 방법 확인</p></div>
+<div class="card"><img src="icon4.jpg"><h3>등재신청서양식</h3><p>양식 다운로드</p></div>
+<div class="card"><img src="icon5.jpg"><h3>작성견본</h3><p>작성 예시 참고</p></div>
+<div class="card"><img src="icon6.jpg"><h3>협찬하신분</h3><p>후원자 소개</p></div>
 </section>
 
 <footer>
-  <div class="footer-info">
-    <b>연안송씨 대종회</b><br>
-    전라북도 진안군 진안읍 진무로 123 | TEL. 055-123-4567 | FAX. 055-123-4568
-  </div>
-  <div class="footer-links">
-    <a href="#">개인정보처리방침</a>
-    <a href="#">이용약관</a>
-    <a href="#">이메일무단수집거부</a>
-    <p style="margin-top:10px; font-size:12px;">Copyright © 2026 연안송씨 대종회. All rights reserved.</p>
-  </div>
+<div class="footer-inner">
+<div>
+<b>진안(전주) 조씨 은열공파 대종회</b><br>
+전라북도 진안군 진안읍 진무로 123 | TEL. 055-123-4567
+</div>
+<div class="footer-links">
+개인정보처리방침 | 이용약관 | 이메일무단수집거부
+</div>
+</div>
 </footer>
 
 </body>
+</html>
+
+<!-- ================== style.css ================== -->
+body{margin:0;font-family:'Noto Serif KR',serif;background:#f4f1ea;}
+header{display:flex;justify-content:space-between;padding:25px 50px;}
+.logo-wrap{display:flex;gap:15px;align-items:center;}
+.logo-img{height:70px;}
+.logo-text{font-size:32px;font-weight:700;}
+.logo-sub{color:#8b5a2b;font-size:14px;}
+.top-links{text-align:right;font-size:13px;color:#777;margin-bottom:5px;}
+
+.search-box{display:flex;border:1px solid #003d32;}
+.search-box input{border:none;padding:10px;width:200px;}
+.search-box button{background:#003d32;color:#fff;border:none;padding:10px;}
+
+nav{background:#003d32;border-bottom:4px solid #b38b4d;}
+.nav-inner{display:flex;color:#e4c99b;}
+.nav-inner>li{flex:1;text-align:center;position:relative;}
+.nav-inner a{display:block;padding:15px;}
+
+.dropdown{display:none;position:absolute;width:100vw;left:0;background:#fff;}
+.nav-inner li:hover .dropdown{display:block;}
+.dropdown-inner{display:flex;gap:30px;padding:20px;max-width:1200px;margin:auto;}
+.dropdown-inner ul{list-style:none;padding:0;}
+.dropdown-inner li{padding:5px 0;font-size:14px;}
+
+.hero{height:450px;background:url('main_bg.jpg') center/cover no-repeat;position:relative;}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(to right,rgba(255,255,255,0.2),rgba(255,255,255,0.9));}
+.hero-content{position:relative;height:100%;display:flex;align-items:center;justify-content:flex-end;padding-right:80px;}
+.hero h2{font-size:36px;}
+.hero p{margin-top:10px;border-top:1px solid #b38b4d;padding-top:10px;}
+
+.section{display:grid;grid-template-columns:repeat(6,1fr);gap:15px;margin:-50px auto 50px;max-width:1200px;}
+.card{background:#fff;border:1px solid #d1c8b1;padding:20px;text-align:center;}
+.card img{width:60px;margin-bottom:10px;}
+.card h3{font-size:14px;}
+.card p{font-size:12px;color:#666;}
+
+footer{background:#0c3b36;color:#ccc;padding:30px;}
+.footer-inner{display:flex;justify-content:space-between;max-width:1200px;margin:auto;}
+.footer-links{font-size:14px;}
 </html>
