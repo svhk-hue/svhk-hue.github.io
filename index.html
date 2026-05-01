@@ -1,141 +1,47 @@
-<!-- ================== index.html ================== -->
 <!DOCTYPE html>
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>연안송씨 대종회</title>
+<title>연안송씨 대종회 Premium</title>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
+<style>
+*{margin:0;padding:0;box-sizing:border-box} body{font-family:'Noto Serif KR',serif;background:#f5f1e8;color:#222;scroll-behavior:smooth;overflow-x:hidden;animation:pageIn .9s ease both}body::before{content:'';position:fixed;inset:0;pointer-events:none;background:radial-gradient(circle at var(--x,50%) var(--y,50%), rgba(255,255,255,.18), transparent 18%);mix-blend-mode:soft-light;z-index:1} a{text-decoration:none;color:inherit} ul{list-style:none}
+.top{display:flex;justify-content:space-between;align-items:center;padding:26px 42px;background:#f6f2e9;animation:fadeDown 1s ease both}
+.brand{display:flex;gap:16px;align-items:center}.seal{width:220px;height:auto;display:block;transition:transform .6s ease}.brand:hover .seal{transform:scale(1.04)}.title{display:none}.sub{display:none}
+.right{text-align:right}.links{font-size:14px;color:#555;margin-bottom:10px}.search{display:flex;border:1px solid #7d735f}.search input{padding:12px 14px;width:260px;border:none;background:#fff}.search button{width:56px;border:none;background:#0c4850;color:#fff;font-size:20px}
+nav{background:#083d45;border-top:1px solid #b89244;border-bottom:4px solid #b89244;position:sticky;top:0;z-index:50;backdrop-filter:blur(8px)}.menu{display:grid;grid-template-columns:repeat(7,1fr);max-width:1700px;margin:auto}.item{position:relative}.item>a{display:block;padding:18px 10px;text-align:center;color:#e5c67a;font-size:20px;font-weight:600;transition:all .3s ease}.item>a:hover{background:rgba(255,255,255,.08);letter-spacing:1px}.item>a::after{content:'';display:block;height:2px;width:0;margin:6px auto 0;background:linear-gradient(90deg,#e5c67a,#fff,#e5c67a);transition:.35s}.item>a:hover::after{width:70%}.dropdown{opacity:0;visibility:hidden;transform:translateY(18px);position:absolute;top:100%;left:0;min-width:220px;background:#f8f3ea;border:1px solid #c9ad73;box-shadow:0 10px 20px rgba(0,0,0,.12);transition:all .35s ease}.dropdown a{display:block;padding:12px 16px;font-size:16px;color:#333;border-bottom:1px solid #e7dcc5}.dropdown a:last-child{border-bottom:none}.item:hover .dropdown{opacity:1;visibility:visible;transform:translateY(0)}.dropdown a:hover{background:#fff7e7;color:#0c4850}
+.hero{height:540px;position:relative;overflow:hidden;border-bottom:1px solid rgba(184,146,68,.35);background:linear-gradient(90deg,rgba(0,0,0,.15),rgba(255,255,255,.7)),url('https://images.unsplash.com/photo-1511818966892-d7d671e672a2?q=80&w=1600&auto=format&fit=crop') center/cover no-repeat;background-size:cover;animation:zoomHero 14s ease-in-out infinite alternate}.overlay{position:absolute;right:6%;top:34%;max-width:560px;animation:fadeUp 1.4s ease .3s both}.overlay h2{font-size:52px;line-height:1.35;text-shadow:0 10px 30px rgba(0,0,0,.18)}.overlay p{margin-top:18px;font-size:28px;color:#444}.overlay h2 span{display:inline-block;animation:fadeUp .8s ease both}
+.cards{max-width:1700px;margin:-30px auto 0;display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:12px;padding:0 22px 28px}.card{position:relative;overflow:hidden;background:#f8f3ea;border:2px solid #d1b887;min-height:180px;padding:20px;text-align:center;display:flex;flex-direction:column;justify-content:center;transition:transform .35s ease, box-shadow .35s ease}.card:hover{transform:translateY(-14px) scale(1.03);box-shadow:0 24px 45px rgba(0,0,0,.18)}.card::after{content:'';position:absolute;inset:0;background:linear-gradient(120deg,transparent,rgba(255,255,255,.45),transparent);transform:translateX(-120%);transition:transform .8s ease}.card:hover::after{transform:translateX(120%)}.icon{width:64px;height:64px;object-fit:contain;display:block;margin:0 auto}.card h3{margin-top:12px;font-size:26px}.card p{margin-top:8px;color:#666;font-size:16px}
+footer{background:#083d45;color:#ddd;padding:22px 40px;display:flex;justify-content:space-between;font-size:16px;position:relative}footer:before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,#d8b66b,transparent)}
+@keyframes fadeDown{from{opacity:0;transform:translateY(-30px)}to{opacity:1;transform:none}}@keyframes pageIn{from{opacity:0;transform:scale(1.02)}to{opacity:1;transform:none}}@keyframes shimmer{from{background-position:-200% 0}to{background-position:200% 0}}@keyframes fadeUp{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:none}}@keyframes zoomHero{from{background-size:100%}to{background-size:108%}}@media(max-width:900px){.top{padding:18px 16px;flex-direction:column;gap:14px}.right{text-align:center}.search input{width:180px}.menu{grid-template-columns:1fr}.item>.dropdown{position:static;opacity:1;visibility:visible;transform:none;display:none}.item:focus-within>.dropdown,.item:hover>.dropdown{display:block}.cards{grid-template-columns:1fr;padding:14px}.hero{height:420px}.overlay{left:20px;right:20px;top:28%}.overlay h2{font-size:30px}.overlay p{font-size:18px}}@media(max-width:1200px){.menu{grid-template-columns:repeat(3,1fr)}.cards{grid-template-columns:repeat(2,1fr)}.title{font-size:30px}.overlay h2{font-size:34px}}
+</style>
 </head>
 <body>
-
-<header>
-  <div class="logo-wrap">
-    <img src="logo.png" class="logo-img">
-    <div>
-      <div class="logo-text">延安宋氏 大宗會</div>
-      <div class="logo-sub">진안(전주) 조씨 은열공파 대종회</div>
-    </div>
-  </div>
-
-  <div>
-    <div class="top-links">로그인 | 회원가입 | 사이트맵</div>
-    <div class="search-box">
-      <input type="text" placeholder="검색어를 입력하세요">
-      <button>🔍</button>
-    </div>
-  </div>
+<header class='top'>
+<div class='brand'><img src='logo.png' class='seal' alt='연안송씨 대종회 로고'></div>
+<div class='right'><div class='links'>로그인 ｜ 회원가입 ｜ 사이트맵</div><div class='search'><input placeholder='검색어를 입력하세요'><button>🔍</button></div></div>
 </header>
-
-<nav>
-<ul class="nav-inner">
-
-<li>
-<a href="#">대종회 소개</a>
-<div class="dropdown">
-<div class="dropdown-inner">
-<ul>
-<li>인사말</li><li>연혁</li><li>조직도</li><li>임원 소개</li><li>찾아오시는 길</li>
-</ul>
-<ul>
-<li>조씨의 기원</li><li>시조 소개</li><li>역대 인물</li><li>문중 유래</li><li>본관 소개</li>
-</ul>
-<ul>
-<li>족보 검색</li><li>족보 열람</li><li>족보 신청</li><li>족보 간행물</li><li>이용안내</li>
-</ul>
-<ul>
-<li>공지사항</li><li>자료실</li><li>간행물</li><li>행사 사진</li><li>회원 동정</li>
-</ul>
-<ul>
-<li>고문서</li><li>역사 자료</li><li>문헌 자료</li><li>유물 유적</li><li>동영상 자료</li>
-</ul>
-<ul>
-<li>자유게시판</li><li>문중대화</li><li>종친 찾기</li><li>전자앨범</li><li>사이트 제안</li>
-</ul>
-</div>
-</div>
-</li>
-
-<li><a href="#">뿌리탐구</a></li>
-<li><a href="#">인터넷족보</a></li>
-<li><a href="#">대종회 자료실</a></li>
-<li><a href="#">전통자료실</a></li>
-<li><a href="#">열린마당</a></li>
-
-</ul>
-</nav>
-
-<div class="hero">
-  <div class="hero-content">
-    <div>
-      <h2>뿌리를 잊지 않는 마음,<br>미래를 여는 자랑스러운 조씨</h2>
-      <p>선조의 얼을 계승하고 후손의 자긍심을 높이는 대종회가 되겠습니다.</p>
-    </div>
-  </div>
-</div>
-
-<section class="section">
-<div class="card"><img src="icon1.jpg"><h3>인터넷족보열람</h3><p>우리 문중의 족보를 온라인으로 열람합니다.</p></div>
-<div class="card"><img src="icon2.jpg"><h3>족보등재안내문</h3><p>족보 등재 기준과 절차 안내</p></div>
-<div class="card"><img src="icon3.jpg"><h3>등재신청서작성요령</h3><p>작성 방법 확인</p></div>
-<div class="card"><img src="icon4.jpg"><h3>등재신청서양식</h3><p>양식 다운로드</p></div>
-<div class="card"><img src="icon5.jpg"><h3>작성견본</h3><p>작성 예시 참고</p></div>
-<div class="card"><img src="icon6.jpg"><h3>협찬하신분</h3><p>후원자 소개</p></div>
+<nav><div class='menu'>
+<div class='item'><a href='#'>대종회 소개</a><div class='dropdown'><a href='#'>인사말</a><a href='#'>연혁</a><a href='#'>조직도</a><a href='#'>임원 소개</a><a href='#'>오시는 길</a></div></div>
+<div class='item'><a href='#'>뿌리탐구</a><div class='dropdown'><a href='#'>시조 소개</a><a href='#'>역대 인물</a><a href='#'>문중 유래</a><a href='#'>본관 소개</a></div></div>
+<div class='item'><a href='#'>인터넷족보</a><div class='dropdown'><a href='#'>족보 검색</a><a href='#'>족보 열람</a><a href='#'>족보 신청</a><a href='#'>이용 안내</a></div></div>
+<div class='item'><a href='#'>대종회 자료실</a><div class='dropdown'><a href='#'>공지사항</a><a href='#'>행사 사진</a><a href='#'>문서 자료</a></div></div>
+<div class='item'><a href='#'>전통자료실</a><div class='dropdown'><a href='#'>고문서</a><a href='#'>역사 자료</a><a href='#'>유물 유적</a></div></div>
+<div class='item'><a href='#'>장학회</a><div class='dropdown'><a href='#'>장학회 소개</a><a href='#'>장학금 신청</a><a href='#'>후원 안내</a></div></div>
+<div class='item'><a href='#'>열린마당</a><div class='dropdown'><a href='#'>자유게시판</a><a href='#'>종친 찾기</a><a href='#'>전자앨범</a><a href='#'>문의하기</a></div></div>
+</div></nav>
+<section class='hero'><div class='overlay'><h2>뿌리를 잊지 않는 마음,<br>미래를 여는 자랑스러운 송씨</h2><p>선조의 얼을 계승하고 후손의 자긍심을 높이는 대종회가 되겠습니다.</p></div></section>
+<section class='cards' id='content'>
+<div class='card'><img src='icon1.png' class='icon' alt='icon1'><h3>인터넷족보열람</h3><p>우리 문중의 족보를 온라인으로 열람합니다.</p></div><div class='card'><img src='icon2.png' class='icon' alt='icon2'><h3>회원가입</h3><p>종친 회원 등록 및 로그인 시스템</p></div><div class='card'><img src='icon3.png' class='icon' alt='icon3'><h3>자유게시판</h3><p>공지·소식·지역 게시판 운영</p></div>
+<div class='card'><img src='icon4.png' class='icon' alt='icon4'><h3>족보등재안내문</h3><p>족보 등재 기준과 절차 안내</p></div>
+<div class='card'><img src='icon5.png' class='icon' alt='icon5'><h3>등재신청서양식</h3><p>양식 다운로드</p></div>
+<div class='card'><img src='icon6.png' class='icon' alt='icon6'><h3>협찬하신분</h3><p>후원자 소개</p></div>
 </section>
-
-<footer>
-<div class="footer-inner">
-<div>
-<b>진안(전주) 조씨 은열공파 대종회</b><br>
-전라북도 진안군 진안읍 진무로 123 | TEL. 055-123-4567
-</div>
-<div class="footer-links">
-개인정보처리방침 | 이용약관 | 이메일무단수집거부
-</div>
-</div>
-</footer>
-
-</body>
-</html>
-
-<!-- ================== style.css ================== -->
-body{margin:0;font-family:'Noto Serif KR',serif;background:#f4f1ea;}
-header{display:flex;justify-content:space-between;padding:25px 50px;}
-.logo-wrap{display:flex;gap:15px;align-items:center;}
-.logo-img{height:70px;}
-.logo-text{font-size:32px;font-weight:700;}
-.logo-sub{color:#8b5a2b;font-size:14px;}
-.top-links{text-align:right;font-size:13px;color:#777;margin-bottom:5px;}
-
-.search-box{display:flex;border:1px solid #003d32;}
-.search-box input{border:none;padding:10px;width:200px;}
-.search-box button{background:#003d32;color:#fff;border:none;padding:10px;}
-
-nav{background:#003d32;border-bottom:4px solid #b38b4d;}
-.nav-inner{display:flex;color:#e4c99b;}
-.nav-inner>li{flex:1;text-align:center;position:relative;}
-.nav-inner a{display:block;padding:15px;}
-
-.dropdown{display:none;position:absolute;width:100vw;left:0;background:#fff;}
-.nav-inner li:hover .dropdown{display:block;}
-.dropdown-inner{display:flex;gap:30px;padding:20px;max-width:1200px;margin:auto;}
-.dropdown-inner ul{list-style:none;padding:0;}
-.dropdown-inner li{padding:5px 0;font-size:14px;}
-
-.hero{height:450px;background:url('main_bg.jpg') center/cover no-repeat;position:relative;}
-.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(to right,rgba(255,255,255,0.2),rgba(255,255,255,0.9));}
-.hero-content{position:relative;height:100%;display:flex;align-items:center;justify-content:flex-end;padding-right:80px;}
-.hero h2{font-size:36px;}
-.hero p{margin-top:10px;border-top:1px solid #b38b4d;padding-top:10px;}
-
-.section{display:grid;grid-template-columns:repeat(6,1fr);gap:15px;margin:-50px auto 50px;max-width:1200px;}
-.card{background:#fff;border:1px solid #d1c8b1;padding:20px;text-align:center;}
-.card img{width:60px;margin-bottom:10px;}
-.card h3{font-size:14px;}
-.card p{font-size:12px;color:#666;}
-
-footer{background:#0c3b36;color:#ccc;padding:30px;}
-.footer-inner{display:flex;justify-content:space-between;max-width:1200px;margin:auto;}
-.footer-links{font-size:14px;}
-</html>
+<footer><div>연안송씨 대종회 ｜ 서울특별시 예시로 123 ｜ TEL. 02-1234-5678</div><div>개인정보처리방침 ｜ 이용약관 ｜ 이메일무단수집거부</div></footer>
+<script>
+window.addEventListener('mousemove',e=>{document.body.style.setProperty('--x',e.clientX+'px');document.body.style.setProperty('--y',e.clientY+'px')});
+const io=new IntersectionObserver(entries=>{entries.forEach(en=>{if(en.isIntersecting){en.target.style.opacity=1;en.target.style.transform='translateY(0)'}})},{threshold:.15});document.querySelectorAll('.card').forEach((c,i)=>{c.style.opacity=0;c.style.transform='translateY(50px)';c.style.transition='all .7s ease '+(i*0.08)+'s';io.observe(c)});
+window.addEventListener('scroll',()=>{document.querySelector('.hero').style.backgroundPosition='center '+(window.scrollY*0.25)+'px';});
+document.querySelectorAll('a[href="#"]').forEach(a=>a.addEventListener('click',e=>{e.preventDefault();document.body.style.opacity=.0;setTimeout(()=>{document.body.style.opacity=1;document.getElementById('content')?.scrollIntoView({behavior:'smooth'})},350)}));
+</script></body></html>
