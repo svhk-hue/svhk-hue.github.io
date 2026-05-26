@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -20,23 +21,7 @@ body{
     font-family:'Noto Serif KR',serif;
     background:#f5f1e8;
     color:#222;
-    scroll-behavior:smooth;
     overflow-x:hidden;
-    animation:pageIn .9s ease both;
-}
-
-body::before{
-    content:'';
-    position:fixed;
-    inset:0;
-    pointer-events:none;
-    background:
-    radial-gradient(
-    circle at var(--x,50%) var(--y,50%),
-    rgba(255,255,255,.18),
-    transparent 18%);
-    mix-blend-mode:soft-light;
-    z-index:1;
 }
 
 a{
@@ -56,7 +41,6 @@ ul{
     align-items:center;
     padding:26px 42px;
     background:#f6f2e9;
-    animation:fadeDown 1s ease both;
 }
 
 .brand{
@@ -69,11 +53,6 @@ ul{
     width:220px;
     height:auto;
     display:block;
-    transition:transform .6s ease;
-}
-
-.brand:hover .seal{
-    transform:scale(1.04);
 }
 
 .right{
@@ -114,8 +93,7 @@ nav{
     border-bottom:4px solid #b89244;
     position:sticky;
     top:0;
-    z-index:50;
-    backdrop-filter:blur(8px);
+    z-index:999;
 }
 
 .menu{
@@ -136,12 +114,11 @@ nav{
     color:#e5c67a;
     font-size:20px;
     font-weight:600;
-    transition:all .3s ease;
+    transition:.3s;
 }
 
 .item>a:hover{
     background:rgba(255,255,255,.08);
-    letter-spacing:1px;
 }
 
 .dropdown{
@@ -155,7 +132,7 @@ nav{
     background:#f8f3ea;
     border:1px solid #c9ad73;
     box-shadow:0 10px 20px rgba(0,0,0,.12);
-    transition:all .35s ease;
+    transition:.35s;
 }
 
 .dropdown a{
@@ -177,7 +154,7 @@ nav{
     transform:translateY(0);
 }
 
-/* 메인 */
+/* 메인 배경 */
 
 .hero{
     height:540px;
@@ -189,8 +166,6 @@ nav{
     rgba(0,0,0,.15),
     rgba(255,255,255,.7)),
     url('main.jpg') center/cover no-repeat;
-
-    animation:zoomHero 14s ease-in-out infinite alternate;
 }
 
 .overlay{
@@ -203,7 +178,6 @@ nav{
 .overlay h2{
     font-size:52px;
     line-height:1.35;
-    text-shadow:0 10px 30px rgba(0,0,0,.18);
 }
 
 .overlay p{
@@ -224,7 +198,6 @@ nav{
 }
 
 .card{
-    position:relative;
     overflow:hidden;
     background:#f8f3ea;
     border:2px solid #d1b887;
@@ -234,12 +207,11 @@ nav{
     display:flex;
     flex-direction:column;
     justify-content:center;
-    transition:transform .35s ease, box-shadow .35s ease;
+    transition:.3s;
 }
 
 .card:hover{
-    transform:translateY(-14px) scale(1.03);
-    box-shadow:0 24px 45px rgba(0,0,0,.18);
+    transform:translateY(-10px);
 }
 
 .icon{
@@ -264,20 +236,21 @@ nav{
 /* 게시판 영역 */
 
 .content-area{
+    display:none;
     width:100%;
-    max-width:1400px;
-    height:1200px;
-    margin:40px auto 80px;
+    max-width:1700px;
+    min-height:calc(100vh - 120px);
+    margin:0 auto;
     background:#fff;
-    border:1px solid #d8c7a0;
-    box-shadow:0 10px 30px rgba(0,0,0,.08);
-    border-radius:14px;
-    overflow:hidden;
+}
+
+.content-area.active{
+    display:block;
 }
 
 #boardFrame{
     width:100%;
-    height:100%;
+    height:calc(100vh - 120px);
     border:none;
 }
 
@@ -290,39 +263,6 @@ footer{
     display:flex;
     justify-content:space-between;
     font-size:16px;
-}
-
-/* 애니메이션 */
-
-@keyframes fadeDown{
-    from{
-        opacity:0;
-        transform:translateY(-30px)
-    }
-    to{
-        opacity:1;
-        transform:none
-    }
-}
-
-@keyframes pageIn{
-    from{
-        opacity:0;
-        transform:scale(1.02)
-    }
-    to{
-        opacity:1;
-        transform:none
-    }
-}
-
-@keyframes zoomHero{
-    from{
-        background-size:100%
-    }
-    to{
-        background-size:108%
-    }
 }
 
 /* 모바일 */
@@ -367,6 +307,11 @@ footer{
 
 .overlay p{
     font-size:18px;
+}
+
+footer{
+    flex-direction:column;
+    gap:10px;
 }
 
 }
@@ -484,20 +429,20 @@ onclick="loadBoard('https://yeonansong.dothome.co.kr/bbs/board.php?bo_table=free
 </div>
 </nav>
 
-<!-- 게시판 영역 -->
+<!-- 게시판 -->
 
 <section class="content-area" id="boardSection">
 
 <iframe
-name="boardFrame"
 id="boardFrame"
-src=""
-frameborder="0">
+src="">
 </iframe>
 
 </section>
-    
-<section class="hero">
+
+<!-- 메인 -->
+
+<section class="hero" id="heroSection">
 
 <div class="overlay">
 
@@ -513,7 +458,9 @@ frameborder="0">
 </div>
 </section>
 
-<section class="cards">
+<!-- 카드 -->
+
+<section class="cards" id="cardSection">
 
 <div class="card">
 <img src="icons1.png" class="icon">
@@ -553,7 +500,7 @@ frameborder="0">
 
 </section>
 
-<footer>
+<footer id="footerSection">
 
 <div>
 연안송씨 대종회 ｜ 서울특별시 예시로 123 ｜ TEL. 02-1234-5678
@@ -567,24 +514,35 @@ frameborder="0">
 
 <script>
 
-window.addEventListener('mousemove',e=>{
-
-document.body.style.setProperty('--x',e.clientX+'px');
-document.body.style.setProperty('--y',e.clientY+'px');
-
-});
-
 function loadBoard(url){
 
-document.getElementById('boardFrame').src = url;
+    document.getElementById('boardFrame').src = url;
 
-document.getElementById('boardSection')
-.scrollIntoView({
-behavior:'smooth',
-block:'start'
-});
+    document.getElementById('boardSection')
+    .classList.add('active');
+
+    document.getElementById('heroSection')
+    .style.display='none';
+
+    document.getElementById('cardSection')
+    .style.display='none';
+
+    document.getElementById('footerSection')
+    .style.display='none';
+
+    window.scrollTo({
+        top:0,
+        behavior:'smooth'
+    });
 
 }
+
+</script>
+
+</body>
+</html>
+```
+
 
 </script>
 
